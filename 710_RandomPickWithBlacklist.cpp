@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -24,7 +25,9 @@ public:
             return valid[int(rand() % valid.size())];
         } else {
             int ans = int(rand() % this->n);
-            while (find(this->blacklist.begin(), this->blacklist.end(), ans) != this->blacklist.end())
+            auto isInBlacklist =
+                find(this->blacklist.begin(), this->blacklist.end(), ans);
+            while (isInBlacklist != this->blacklist.end())
                 ans = int(rand() % this->n);
 
             return ans;
@@ -37,11 +40,12 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n = 3;
-    vector<int> blacklist = {0};
+    int n = 1000000;
+    vector<int> blacklist = {1,  3,  5,  7,  9,  11, 13, 15, 17,
+                             19, 21, 23, 25, 27, 29, 31, 33, 47};
     Solution *solution = new Solution(n, blacklist);
 
-    for (int i = 0; i < 40; i++)
+    for (int i = 0; i < 1000000; i++)
         cout << solution->pick() << '\n';
 
     return 0;
