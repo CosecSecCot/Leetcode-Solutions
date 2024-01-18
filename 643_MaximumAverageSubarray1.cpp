@@ -13,11 +13,10 @@ public:
             sum += window.back();
         }
 
-        double average = float(sum) / k;
+        double average = double(sum) / k;
         for (int i = k; i < nums.size(); ++i) {
             window.push(nums[i]);
             sum += window.back();
-
             // cout << window.back() << ' ' << sum << ' ' << average << ' ' << window.size() << '\n';
 
             if (window.size() > k) {
